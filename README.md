@@ -33,7 +33,7 @@ python -m venv .venv
 * Install dependencies 
 
 ```
-pip install -r dashbord/requirements.txt
+pip install -r dashboard/requirements.txt
 ```
 
 * Launch application 
