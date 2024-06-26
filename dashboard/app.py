@@ -1,25 +1,31 @@
+import pandas as pd
 from shiny.express import ui, render, input
 from pathlib import Path
-import pandas as pd
+from shinywidgets import render_plotly
+import plotly.express as px
 
 
 file_path = Path(__file__).parent / "penguins.csv"
 
 df = pd.read_csv(file_path)
 
-ui.h1("Hello World")
+with ui.sidebar(bg="#4898a8"):
 
-ui.input_slider("mass", "Body Mass", 2500, 5000, 3000)
+    ui.h1("Hello World")
+
+
+ui.input_slider("mass", "Body Mass", 2500, 6500, 3000)
 ui.input_select("sex", "Select Sex", choices=["Male", "Female", None])
+
+
+@ render_plotly
+def plot():
+    df_sub = df[(df["sex"] == input.sex()) & (
+        df["body_mass_g"] >= input.mass())]
+    return px.scatter(df_sub, "bill_depth_mm", "bill_length_mm", color="species", facet_col="island")
 
 
 @ render.data_frame
 def dat():
-    val = input.sex()
-    print(val)
-    return df[df["sex"] == val]
-
-
-@ render.text
-def text():
-    return "I love shiny"
+    return df[(df["sex"] == input.sex()) & (
+        df["body_mass_g"] >= input.mass())]
