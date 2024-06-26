@@ -9,16 +9,17 @@ df = pd.read_csv(file_path)
 
 ui.h1("Hello World")
 
-ui.input_slider("mass", "Body Mass", 2000, 3000, 400)
+ui.input_slider("mass", "Body Mass", 2500, 5000, 3000)
+ui.input_select("sex", "Select Sex", choices=["Male", "Female", None])
 
 
-@render.data_frame
+@ render.data_frame
 def dat():
-    val = input.mass()
+    val = input.sex()
     print(val)
-    return df[df["body_mass_g"] < val]
+    return df[df["sex"] == val]
 
 
-@render.text
+@ render.text
 def text():
     return "I love shiny"
