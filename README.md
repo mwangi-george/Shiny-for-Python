@@ -16,6 +16,12 @@ cd your_project_directory
 git clone https://github.com/mwangi-george/Shiny-for-Python.git
 ```
 
+* Navigate to the app directory
+
+```
+cd your_project_directory/Shiny-for-Python
+```
+
 * Create a virtual environment and activate it
 
 ```
