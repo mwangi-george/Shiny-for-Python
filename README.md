@@ -28,7 +28,7 @@ cd your_project_directory/Shiny-for-Python
 python -m venv .venv
 ```
 
-* Activate virtual environment 
+* Activate virtual environment
 
 for windows powershell
 
@@ -36,7 +36,7 @@ for windows powershell
 .venv/Scripts/activate
 ```
 
-for linux 
+for linux
 
 ```
 source .venv/Scripts/activate

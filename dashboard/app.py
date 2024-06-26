@@ -1,7 +1,5 @@
-import pandas as pd
 import plotly.express as px
 from shiny.express import ui, render, input
-from pathlib import Path
 from shinywidgets import render_plotly
 from data_import import df
 
