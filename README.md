@@ -16,6 +16,14 @@ cd your_project_directory
 git clone https://github.com/mwangi-george/Shiny-for-Python.git
 ```
 
+* Create a virtual environment and activate it
+
+```
+python -m venv .venv
+
+.venv/Scripts/activate
+```
+
 * Install dependencies 
 
 ```
