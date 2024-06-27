@@ -9,9 +9,18 @@ with ui.sidebar():
 
     ui.h1("Hello World")
     ui.input_slider("mass", "Body Mass", 2500, 6500, 3000)
-    ui.input_select("sex", "Select Sex", choices=["Male", "Female"])
-    ui.hr()
+    ui.input_radio_buttons("sex", "Select Sex", choices=["Male", "Female"])
     ui.input_action_button("refresh_button", "Refresh", color="red")
+    ui.hr()
+
+    ui.input_text("new_label", "New Label")
+    ui.input_action_button("update", "Update")
+
+
+@reactive.effect
+@reactive.event(input.update)
+def update_label():
+    print(input.new_label())
 
 
 @reactive.calc
