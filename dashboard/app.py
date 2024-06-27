@@ -14,7 +14,6 @@ with ui.sidebar(bg="#4898a8"):
 
 @reactive.calc
 def filtered_data():
-    print("firing!")
     return df[(df["sex"] == input.sex()) & (
         df["body_mass_g"] >= input.mass())]
 
