@@ -21,6 +21,7 @@ with ui.sidebar():
 @reactive.event(input.update)
 def update_label():
     ui.update_radio_buttons("sex", label=input.new_label())
+    ui.update_text("new_label", value="")
 
 
 @reactive.calc
@@ -51,3 +52,16 @@ with ui.layout_columns():
         @ render.data_frame
         def dat():
             return filtered_data()
+
+with ui.layout_columns():
+    with ui.card():
+        ui.card_header("Testing")
+        ui.input_text("password", "Enter Password")
+
+    with ui.card():
+        @render.express
+        def show_penguins():
+            if input.password() == "1234":
+                @render.data_frame
+                def dat2():
+                    return filtered_data()
