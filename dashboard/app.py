@@ -2,6 +2,7 @@ import plotly.express as px
 from shiny.express import ui, render, input
 from shinywidgets import render_plotly
 from data_import import df
+from shiny import reactive
 
 
 with ui.sidebar(bg="#4898a8"):
@@ -11,14 +12,20 @@ with ui.sidebar(bg="#4898a8"):
     ui.input_select("sex", "Select Sex", choices=["Male", "Female"])
 
 
+@reactive.calc
+def filtered_data():
+    print("firing!")
+    return df[(df["sex"] == input.sex()) & (
+        df["body_mass_g"] >= input.mass())]
+
+
 with ui.layout_columns():
     with ui.card():
         ui.card_header("Plot")
 
         @ render_plotly
         def plot():
-            df_sub = df[(df["sex"] == input.sex()) & (
-                df["body_mass_g"] >= input.mass())]
+            df_sub = filtered_data()
 
             if input.show_species():
                 return px.scatter(df_sub, "bill_depth_mm", "bill_length_mm", color="species")
@@ -32,5 +39,4 @@ with ui.layout_columns():
 
         @ render.data_frame
         def dat():
-            return df[(df["sex"] == input.sex()) & (
-                df["body_mass_g"] >= input.mass())]
+            return filtered_data()
