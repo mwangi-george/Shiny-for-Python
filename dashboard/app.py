@@ -17,10 +17,10 @@ with ui.sidebar():
     ui.input_action_button("update", "Update")
 
 
-@reactive.effect
+@reactive.effect()
 @reactive.event(input.update)
 def update_label():
-    print(input.new_label())
+    ui.update_radio_buttons("sex", label=input.new_label())
 
 
 @reactive.calc
