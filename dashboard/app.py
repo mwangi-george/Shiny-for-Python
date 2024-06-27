@@ -5,14 +5,17 @@ from data_import import df
 from shiny import reactive
 
 
-with ui.sidebar(bg="#4898a8"):
+with ui.sidebar():
 
     ui.h1("Hello World")
     ui.input_slider("mass", "Body Mass", 2500, 6500, 3000)
     ui.input_select("sex", "Select Sex", choices=["Male", "Female"])
+    ui.hr()
+    ui.input_action_button("refresh_button", "Refresh", color="red")
 
 
 @reactive.calc
+@reactive.event(input.refresh_button, ignore_none=False)
 def filtered_data():
     return df[(df["sex"] == input.sex()) & (
         df["body_mass_g"] >= input.mass())]
