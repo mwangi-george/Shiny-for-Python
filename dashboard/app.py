@@ -4,7 +4,7 @@ from shinywidgets import render_plotly
 from data_import import df
 from shiny import reactive
 
-
+# context manager
 with ui.sidebar():
 
     ui.h1("Hello World")
